@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./config/database');
+const router = require('./router');
 
 const app = express();
 
@@ -14,6 +15,8 @@ db.connect((err) => {
   }
   console.log('MySql connected...');
 })
+
+app.use('/', router);
 
 app.listen(`3000`, () => {
   console.log(`Server started on port 3000`);
