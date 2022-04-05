@@ -9,7 +9,7 @@ const validateFormat = (req, res, next) => {
   if (typeof req.body.amount !== 'number' || req.body.amount <= 0) {
     return res.status(400).send('Amount is wrong');
   }
-  if (req.body.type !== 'Income' || req.body.type !== 'Expenditure') {
+  if (req.body.type !== 'Income' && req.body.type !== 'Expenditure') {
     return res.status(400).send('Type must be "Income" or "Expenditure"');
   }
   return next();
