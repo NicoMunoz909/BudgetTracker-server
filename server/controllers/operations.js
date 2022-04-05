@@ -18,12 +18,12 @@ const getById = (req,res) => {
 
 const createOperation = (req,res) => {
   const expense = {
-    type: req.body.type,
-    category: req.body.category,
+    concept: req.body.concept,
     amount: req.body.amount,
-    date: req.body.date
+    date: req.body.date,
+    type: req.body.type
   };
-  const sql = `INSERT INTO operations (type, category, amount, date) VALUES('${expense.type}', '${expense.category}', '${expense.amount}', '${expense.date}')`;
+  const sql = `INSERT INTO operations (concept, amount, date, type) VALUES('${expense.concept}', '${expense.amount}', '${expense.date}', '${expense.type}')`;
   db.query(sql, (err, result) => {
     if(err) throw err;
     res.send(`Insert succesful ${result}`);
@@ -31,23 +31,12 @@ const createOperation = (req,res) => {
 }
 
 const updateOperation = (req,res) => {
-  const expense = {
-    type: req.body.type || undefined,
-    category: req.body.category || undefined,
-    amount: req.body.amount || undefined,
-    date: req.body.date || undefined
-  };
-  const sql = 'UPDATE operations' + 
-  type? `SET type = '${expense.type}'` : "" +
-  category? `SET category = '${expense.category}'` : "" +
-  amount? `SET amount = '${expense.amount}'` : "" +
-  date? `SET date = '${expense.date}'` : "" +
-  `WHERE id=${req.params.id}`;
-  console.log(sql);
-  // db.query(sql, (err, result) => {
-  //   if(err) throw err;
-  //   res.send(result);
-  // })
+  const expense = {...req.body};
+  const sql = `UPDATE operations SET ? WHERE id='${req.params.id}'`
+  db.query(sql, expense, (err, result) => {
+    if(err) throw err;
+    res.send(result);
+  })
 }
 
 const deleteOperation = (req,res) => {
