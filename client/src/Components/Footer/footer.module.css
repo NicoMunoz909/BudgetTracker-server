@@ -1,8 +1,5 @@
 .container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
+  grid-column: 1/13;
   height: 10vh;
   background-color: white;
   border-top: 1px solid grey;
