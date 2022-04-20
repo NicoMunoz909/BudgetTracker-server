@@ -23,7 +23,7 @@ const Home = () => {
           case 'Income':
               return total + move.amount;
           default:
-            break;
+            return total;
         };
       }, 0)}</p>
       <p>Last 10 moves</p>
