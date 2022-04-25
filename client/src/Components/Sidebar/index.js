@@ -1,14 +1,15 @@
+import { Link } from 'react-router-dom'
 import styles from './sidebar.module.css'
 
 const Sidebar = () => {
   return (
     <div className={styles.container}>
       <div>
-        <a className={styles.link} href="/" >home</a>
-        <a className={styles.link} href="/moves" >all moves</a>
+        <Link className={styles.link} to="/home" >home</Link>
+        <Link className={styles.link} to="/moves" >all moves</Link>
       </div>
       <div>
-        <a className={styles.link} href="/moves" >log out</a>
+        <Link className={styles.link} to="/moves" >log out</Link>
       </div>
     </div>
   )
