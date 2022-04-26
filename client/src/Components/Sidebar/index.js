@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <div className={styles.container}>
       <div>
-        <Link className={styles.link} to="/home" >home</Link>
+        <Link className={styles.link} to="/" >home</Link>
         <Link className={styles.link} to="/moves" >all moves</Link>
       </div>
       <div>
