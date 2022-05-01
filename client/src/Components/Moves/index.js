@@ -71,7 +71,7 @@ const Moves = () => {
             <th>Date</th>
             <th>Type</th>
             <th>
-              <button>
+              <button onClick={() => navigate(`${location.pathname}/new`)}>
                 <FaPlus />
               </button>
             </th>

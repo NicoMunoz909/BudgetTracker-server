@@ -6,6 +6,7 @@ import Layout from './Components/Layout';
 import Home from './Components/Home';
 import Moves from './Components/Moves';
 import UpdateForm from './Components/UpdateForm';
+import CreateForm from './Components/CreateForm';
 
 const container = document.getElementById('root');
 const root = createRoot(container) 
@@ -17,7 +18,8 @@ root.render(
         <Route path='/' element={<Layout />}>
           <Route path='/' element={<Home />} />
           <Route path='moves' element={<Moves />}>
-            <Route path=':id' element={<UpdateForm />} />   
+            <Route path=':id' element={<UpdateForm />} />
+            <Route path='new' element={<CreateForm />} />
           </Route>
         </Route>
       </Routes>
