@@ -1,6 +1,6 @@
 import styles from './moves.module.css'
-import {FaTimes, FaEdit, FaPlus} from 'react-icons/fa'
-import {useState, useEffect} from 'react'
+import { FaTimes, FaEdit } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import DeleteModal from '../DeleteModal';
 
@@ -56,43 +56,48 @@ const Moves = () => {
     <div className={styles.container}>
       <Outlet />
       {showDelete && <DeleteModal onCancel={() => setShowDelete(false)} onConfirm={() => deleteMove(selectedMove)} />}
-      <h1>Moves</h1>
-      <p>List:</p>
-      <select onChange={(e) => filterMoves(e.target.value)}>
-        <option>All</option>
-        <option>Expenditure</option>
-        <option>Income</option>
-      </select>
-      <table>
-        <thead>
-          <tr>
-            <th>Concept</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Type</th>
-            <th>
-              <button onClick={() => navigate(`${location.pathname}/new`)}>
-                <FaPlus />
-              </button>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {selectedMoves.map(move => {
-            return( 
-            <tr key={move.id}>
-              <td>{move.concept}</td>
-              <td>{move.amount}</td>
-              <td>{move.date.substring(0, move.date.indexOf('T'))}</td>
-              <td>{move.type}</td>
-              <td>
-                <button onClick={() => navigate(`${location.pathname}/${move.id}`)}><FaEdit></FaEdit></button>
-                <button onClick={(e) => {handleDelete(e, move)}}><FaTimes></FaTimes></button>
-              </td>
-            </tr>)
-          })}
-        </tbody>
-      </table>
+      <h2>Moves</h2>
+      <div className={styles.controlsContainer}>
+        <div>
+          <label htmlFor="filter">Show:</label>
+          <select className={styles.filter} name='filter' onChange={(e) => filterMoves(e.target.value)}>
+            <option>All</option>
+            <option>Expenditure</option>
+            <option>Income</option>
+          </select>
+        </div>
+        <button className={styles.addBtn} onClick={() => navigate(`${location.pathname}/new`)}>
+          Add Move
+        </button>
+      </div>
+      <div className={styles.tableContainer}>
+        <table>
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedMoves.map(move => {
+              return(
+              <tr key={move.id}>
+                <td>{move.concept}</td>
+                <td>${move.amount}</td>
+                <td>{move.date.substring(0, move.date.indexOf('T'))}</td>
+                <td>{move.type}</td>
+                <td>
+                  <button className={styles.tableBtn} onClick={() => navigate(`${location.pathname}/${move.id}`)}><FaEdit></FaEdit></button>
+                  <button className={styles.tableBtn} onClick={(e) => {handleDelete(e, move)}}><FaTimes></FaTimes></button>
+                </td>
+              </tr>)
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -11,4 +11,83 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h2 {
+  font-size: 2vw;
+  color: rgb(85 168 253);
+}
+
+table {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  line-height: 5vh;
+}
+
+table caption {
+  color: rgb(128, 128, 128);
+}
+
+table thead {
+  /* head takes the height it requires, 
+  and it's not scaled when table is resized */
+  flex: 0 0 auto;
+  font-weight: 700;
+  width: calc(100% - 0.9em);
+}
+
+table tbody {
+  /* body takes all the remaining available space */
+  flex: 1 1 auto;
+  display: block;
+  overflow-y: scroll;
+}
+
+table tbody tr {
+  width: 100%;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.281);
+}
+
+table thead, table tbody tr {
+  display: table;
+  table-layout: fixed;
+}
+
+form {
+  display: block;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 5vh;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.281);
+  font-size: larger;
+}
+
+form label {
+  display: block;
+}
+
+form div {
+  margin-bottom: 2vh;
+}
+
+form input {
+  border: 1px solid rgba(128, 128, 128, 0.281);
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+form select {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.281);
+  border-radius: 20px;
 }

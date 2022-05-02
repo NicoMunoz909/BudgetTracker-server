@@ -34,22 +34,30 @@ const FormModal = () => {
           <h3>Create Move</h3>
         </div>
         <form>
-          <label htmlFor="concept">Concept</label>
-          <input type="text" name="concept" id="concept" onChange={(e) => setConcept(e.target.value)} />
-          <label htmlFor="amount">Amount</label>
-          <input type="number" name="amount" id="amount" onChange={(e) => setAmount(parseFloat(e.target.value))} />
-          <label htmlFor="date">Date</label>
-          <input type="date" name="date" id="date" onChange={(e) => setDate(e.target.value)} />
-          <label htmlFor="type">Type </label>
-          <select name="type" id="type" defaultValue='Select One' onChange={(e) => setType(e.target.value)} >
-            <option disabled>Select One</option>
-            <option value="Income">Income</option>
-            <option value="Expenditure">Expenditure</option>
-          </select>
+          <div>
+            <label htmlFor="concept">Concept</label>
+            <input type="text" name="concept" id="concept" onChange={(e) => setConcept(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="amount">Amount</label>
+            <input type="number" name="amount" id="amount" onChange={(e) => setAmount(parseFloat(e.target.value))} />
+          </div>
+          <div>
+            <label htmlFor="date">Date</label>
+            <input type="date" name="date" id="date" onChange={(e) => setDate(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="type">Type </label>
+            <select name="type" id="type" defaultValue='Select One' onChange={(e) => setType(e.target.value)} >
+              <option disabled>Select One</option>
+              <option value="Income">Income</option>
+              <option value="Expenditure">Expenditure</option>
+            </select>
+          </div>
         </form>
         <div className={styles.btnContainer}>
-          <button onClick={() => navigate(-1)}>Cancel</button>
-          <button onClick={() => createMove({concept, amount, date, type})}>Create</button>
+          <button className={styles.cancelBtn} onClick={() => navigate(-1)}>Cancel</button>
+          <button className={styles.saveBtn} onClick={() => createMove({concept, amount, date, type})}>Save</button>
         </div>
       </div>
     </div>

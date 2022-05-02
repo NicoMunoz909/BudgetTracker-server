@@ -5,11 +5,14 @@ const DeleteModal = (props) => {
     <div className={styles.container}>
       <div className={styles.modal}>
         <div className={styles.header}>
-          <h3>Delete Move?</h3>
+          <h3>Are you sure?</h3>
         </div>
+        <p className={styles.message}>
+          Do you really want to delete this move? This process cannot be undone
+        </p>
         <div className={styles.btnContainer}>
-          <button onClick={props.onCancel}>NO</button>
-          <button onClick={props.onConfirm}>YES</button>
+          <button className={styles.cancelBtn} onClick={props.onCancel}>Cancel</button>
+          <button className={styles.deleteBtn} onClick={props.onConfirm}>Delete</button>
         </div>
       </div>
     </div>

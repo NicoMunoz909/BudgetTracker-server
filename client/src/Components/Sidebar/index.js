@@ -1,15 +1,17 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import { BsCalculator } from 'react-icons/bs'
 import styles from './sidebar.module.css'
 
 const Sidebar = () => {
   return (
     <div className={styles.container}>
-      <div>
-        <Link className={styles.link} to="/" >home</Link>
-        <Link className={styles.link} to="/moves" >all moves</Link>
+      <div className={styles.header}>
+        <BsCalculator className={styles.icon}/>
+        <h1 className={styles.title}>Budget Tracker</h1>
       </div>
       <div>
-        <Link className={styles.link} to="/moves" >log out</Link>
+        <NavLink className={({ isActive }) => isActive ? styles.link + ' ' + styles.selected : styles.link} to="/" >home</NavLink>
+        <NavLink className={({ isActive }) => isActive ? styles.link + ' ' + styles.selected : styles.link} to="/moves" >All moves</NavLink>
       </div>
     </div>
   )
