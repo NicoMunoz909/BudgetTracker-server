@@ -83,6 +83,13 @@ form select {
   font-family: inherit;
 }
 
+form span {
+  display: block;
+  font-size: small;
+  color: red;
+  margin-top: 1vh;
+}
+
 ::-webkit-scrollbar {
   background-color: transparent;
 }

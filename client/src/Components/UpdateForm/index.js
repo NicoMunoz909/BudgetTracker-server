@@ -11,6 +11,7 @@ const FormModal = () => {
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [type, setType] = useState("");
+  const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
     fetch(`http://localhost:5000/${params.id}`)
@@ -25,7 +26,26 @@ const FormModal = () => {
     })
   }, [params.id]);
 
+  const validateForm = () => {
+    const errorMessages = {}
+    const concept = document.getElementById('concept').value;
+    const amount = parseFloat(document.getElementById('amount').value);
+    const date = document.getElementById('date').value;
+    const type = document.getElementById('type').value;
+    if (concept === "") errorMessages.concept = true
+    if (isNaN(amount)) errorMessages.amount = true
+    if (date === "") errorMessages.date = true
+    if (type === "Select One") errorMessages.type = true
+    setErrorMessages(errorMessages);
+    if (Object.keys(errorMessages).length === 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   const editMove = (move) => {
+    if (!validateForm()) return;
     fetch(`http://localhost:5000/${params.id}`, 
     {
       method: 'PATCH',
@@ -52,14 +72,17 @@ const FormModal = () => {
           <div>
             <label htmlFor="concept">Concept</label>
             <input type="text" name="concept" id="concept" value={concept} onChange={(e) => setConcept(e.target.value)} />
+            {errorMessages.concept && <span>Concept can't be empty</span>}
           </div>
           <div>
             <label htmlFor="amount">Amount</label>
             <input type="number" name="amount" id="amount" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
+            {errorMessages.amount && <span>Amount can't be empty</span>}
           </div>
           <div>
             <label htmlFor="date">Date</label>
             <input type="date" name="date" id="date" value={date}  onChange={(e) => setDate(e.target.value)} />
+            {errorMessages.date && <span>You must pick a date</span>}
           </div>
           <div>
             <label htmlFor="type">Type </label>
@@ -67,6 +90,7 @@ const FormModal = () => {
               <option value="Income">Income</option>
               <option value="Expenditure">Expenditure</option>
             </select>
+            {errorMessages.type && <span>You must select a type</span>}
           </div>
         </form>
         <div className={styles.btnContainer}>
