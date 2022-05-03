@@ -9,9 +9,9 @@ const Moves = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [moves, setMoves] = useState([]);
-  const [selectedMoves, setSelectedMoves] = useState([]);
   const [showDelete, setShowDelete] = useState(false);
   const [selectedMove, setSelectedMove] = useState(null);
+  const [filter, setFilter] = useState('All');
 
   useEffect(() => {
     fetch('http://localhost:5000')
@@ -20,17 +20,8 @@ const Moves = () => {
     })
     .then((data) => {
       setMoves(data);
-      setSelectedMoves(data);
     })
   }, [location]);
-
-  const filterMoves = (type) => {
-    if (type === 'All') {
-      setSelectedMoves(moves);
-    } else {
-      setSelectedMoves(moves.filter(move => move.type === type));
-    }
-  }
 
   const handleDelete = (e, move) => {
     e.stopPropagation();
@@ -45,10 +36,8 @@ const Moves = () => {
         return response.json()
       }
       setMoves(moves.filter((op) => {return op.id !== move.id}));
-      setSelectedMoves(selectedMoves.filter((op) => {return op.id !== move.id}));
     })
     setMoves(moves.filter((op) => {return op.id !== move.id}));
-    setSelectedMoves(selectedMoves.filter((op) => {return op.id !== move.id}));
     setShowDelete(false);
   }
 
@@ -60,7 +49,7 @@ const Moves = () => {
       <div className={styles.controlsContainer}>
         <div>
           <label htmlFor="filter">Show:</label>
-          <select className={styles.filter} name='filter' onChange={(e) => filterMoves(e.target.value)}>
+          <select className={styles.filter} name='filter' onChange={(e) => setFilter(e.target.value)}>
             <option>All</option>
             <option>Expenditure</option>
             <option>Income</option>
@@ -82,7 +71,7 @@ const Moves = () => {
             </tr>
           </thead>
           <tbody>
-            {selectedMoves.map(move => {
+            {moves.filter((move) => { return (filter === 'All' || move.type === filter) }).map(move => {
               return(
               <tr key={move.id}>
                 <td>{move.concept}</td>
