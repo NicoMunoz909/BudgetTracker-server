@@ -51,3 +51,9 @@
 .tableBtn:hover {
   color: rgb(85 168 253);
 }
+
+@media (max-width: 768px) {
+  .container {
+    grid-column: 1/13;
+  }
+}

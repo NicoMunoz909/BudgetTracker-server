@@ -16,3 +16,9 @@
 .tableContainer {
   height: 80%;
 }
+
+@media (max-width: 768px) {
+  .container {
+    grid-column: 1/13;
+  }
+}
