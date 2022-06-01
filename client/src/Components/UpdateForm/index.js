@@ -14,7 +14,7 @@ const FormModal = () => {
   const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/${params.id}`)
+    fetch(`/api/${params.id}`)
     .then((response) => {
       return response.json()
     })
@@ -46,7 +46,7 @@ const FormModal = () => {
 
   const editMove = (move) => {
     if (!validateForm()) return;
-    fetch(`http://localhost:5000/${params.id}`, 
+    fetch(`/api/${params.id}`,
     {
       method: 'PATCH',
       headers: {
