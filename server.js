@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+require("dotenv").config()
 const db = require('./config/database');
 const router = require('./router');
 const path = require('path');
@@ -18,17 +19,14 @@ db.connect((err) => {
 })
 
 //Use Routes
-app.use('/', router);
+app.use('/api', router);
 
-//Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
-  //Set static folder
-  app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  })
-}
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 const port = process.env.PORT || 5000;
 
