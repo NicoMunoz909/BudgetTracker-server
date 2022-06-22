@@ -14,7 +14,7 @@ const FormModal = () => {
   const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
-    fetch(`/api/${params.id}`)
+    fetch(`https://vast-fjord-34429.herokuapp.com/api/${params.id}`)
     .then((response) => {
       return response.json()
     })
@@ -46,7 +46,7 @@ const FormModal = () => {
 
   const editMove = (move) => {
     if (!validateForm()) return;
-    fetch(`/api/${params.id}`,
+    fetch(`https://vast-fjord-34429.herokuapp.com/api/${params.id}`,
     {
       method: 'PATCH',
       headers: {
