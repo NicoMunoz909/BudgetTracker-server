@@ -14,7 +14,7 @@ const Moves = () => {
   const [filter, setFilter] = useState('All');
 
   useEffect(() => {
-    fetch('https://vast-fjord-34429.herokuapp.com/api')
+    fetch('https://vast-fjord-34429.herokuapp.com/api/operations')
     .then((response) => {
       return response.json()
     })
@@ -30,7 +30,7 @@ const Moves = () => {
   }
 
   const deleteMove = (move) => {
-    fetch(`https://vast-fjord-34429.herokuapp.com/api/${move.id}`, {method: 'DELETE'})
+    fetch(`https://vast-fjord-34429.herokuapp.com/api/operations/${move.id}`, {method: 'DELETE'})
     .then((response) => {
       if (response.status !== 200 && response.status !== 201) {
         return response.json()

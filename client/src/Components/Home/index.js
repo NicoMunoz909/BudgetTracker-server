@@ -4,7 +4,7 @@ const Home = () => {
   const [moves, setMoves] = useState([]);
 
   useEffect(() => {
-    fetch('https://vast-fjord-34429.herokuapp.com/api')
+    fetch('https://vast-fjord-34429.herokuapp.com/api/operations')
     .then((response) => {
       return response.json()
     })

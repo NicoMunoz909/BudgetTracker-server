@@ -31,7 +31,7 @@ const FormModal = () => {
 
   const createMove = (move) => {
     if (!validateForm()) return;
-    fetch(`https://vast-fjord-34429.herokuapp.com/api`,
+    fetch(`https://vast-fjord-34429.herokuapp.com/api/operations`,
     {
       method: 'POST',
       headers: {

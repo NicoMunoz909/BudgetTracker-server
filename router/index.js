@@ -4,7 +4,7 @@ const router = express.Router();
 const operations = require('./operations.js');
 const categories = require('./categories.js');
 
-router.use('/', operations);
+router.use('/operations', operations);
 router.use('/categories', categories)
 
 module.exports = router;
