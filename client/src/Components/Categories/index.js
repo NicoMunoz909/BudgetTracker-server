@@ -1,10 +1,20 @@
 import styles from './categories.module.css';
-import { useState } from 'react';
-import { FaTimes, FaEdit } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { FaTimes } from 'react-icons/fa';
 
 const Categories = () => {
 
-  const [categories, setCategories] = useState([{id: '1', name: 'food'}, {id: '1', name: 'food'},{id: '1', name: 'food'},{id: '1', name: 'food'}]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch('https://vast-fjord-34429.herokuapp.com/api/categories')
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      setCategories(data);
+    })
+  }, []);
 
   return (
     <div className={styles.container}>
