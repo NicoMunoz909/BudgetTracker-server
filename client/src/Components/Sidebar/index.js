@@ -14,6 +14,7 @@ const Sidebar = () => {
       <div className={styles.links}>
         <NavLink className={({ isActive }) => isActive ? styles.link + ' ' + styles.selected : styles.link} to="/" >home</NavLink>
         <NavLink className={({ isActive }) => isActive ? styles.link + ' ' + styles.selected : styles.link} to="/moves" >All moves</NavLink>
+        <NavLink className={({ isActive }) => isActive ? styles.link + ' ' + styles.selected : styles.link} to="/categories" >Categories</NavLink>
       </div>
     </div>
   )

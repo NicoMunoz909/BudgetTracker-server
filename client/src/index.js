@@ -8,9 +8,10 @@ import Home from './Components/Home';
 import Moves from './Components/Moves';
 import UpdateForm from './Components/UpdateForm';
 import CreateForm from './Components/CreateForm';
+import Categories from './Components/Categories';
 
 const container = document.getElementById('root');
-const root = createRoot(container) 
+const root = createRoot(container)
 
 root.render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ root.render(
             <Route path=':id' element={<UpdateForm />} />
             <Route path='new' element={<CreateForm />} />
           </Route>
+          <Route path='categories' element={<Categories />} />
         </Route>
       </Routes>
     </BrowserRouter>

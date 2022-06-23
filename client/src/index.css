@@ -34,7 +34,7 @@ table caption {
 }
 
 table thead {
-  /* head takes the height it requires, 
+  /* head takes the height it requires,
   and it's not scaled when table is resized */
   flex: 0 0 auto;
   font-weight: 700;
