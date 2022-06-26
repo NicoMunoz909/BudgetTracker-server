@@ -34,6 +34,7 @@ const Home = () => {
               <th>Concept</th>
               <th>Amount</th>
               <th>Date</th>
+              <th>Category</th>
               <th>Type</th>
             </tr>
           </thead>
@@ -44,6 +45,7 @@ const Home = () => {
                 <td>{move.concept}</td>
                 <td>${move.amount}</td>
                 <td>{move.date.substring(0, move.date.indexOf('T'))}</td>
+                <td>{move.category}</td>
                 <td>{move.type}</td>
               </tr>)
             })}

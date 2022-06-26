@@ -66,6 +66,7 @@ const Moves = () => {
               <th>Concept</th>
               <th>Amount</th>
               <th>Date</th>
+              <th>Category</th>
               <th>Type</th>
               <th>Actions</th>
             </tr>
@@ -77,6 +78,7 @@ const Moves = () => {
                 <td>{move.concept}</td>
                 <td>${move.amount}</td>
                 <td>{move.date.substring(0, move.date.indexOf('T'))}</td>
+                <td>{move.category}</td>
                 <td>{move.type}</td>
                 <td>
                   <button className={styles.tableBtn} onClick={() => navigate(`${location.pathname}/${move.id}`)}><FaEdit></FaEdit></button>

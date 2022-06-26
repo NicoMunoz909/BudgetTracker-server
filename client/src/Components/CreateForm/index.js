@@ -1,6 +1,7 @@
 import styles from './createForm.module.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const FormModal = () => {
 
@@ -8,8 +9,20 @@ const FormModal = () => {
   const [concept, setConcept] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
+  const [category, setCategory] = useState("");
   const [type, setType] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://vast-fjord-34429.herokuapp.com/api/categories`)
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      setCategories(data);
+    })
+  }, []);
 
   const validateForm = () => {
     const errorMessages = {}
@@ -70,6 +83,18 @@ const FormModal = () => {
             {errorMessages.date && <span>You must pick a date</span>}
           </div>
           <div>
+            <label htmlFor="category">Category </label>
+            <select name="category" id="category" defaultValue='Select One' onChange={(e) => setCategory(e.target.value)} >
+              <option disabled>Select One</option>
+              {categories.map(cat => {
+                return(
+                  <option value={cat.name}>{cat.name}</option>
+                )
+              })}
+            </select>
+            {errorMessages.type && <span>You must select a type</span>}
+          </div>
+          <div>
             <label htmlFor="type">Type </label>
             <select name="type" id="type" defaultValue='Select One' onChange={(e) => setType(e.target.value)} >
               <option disabled>Select One</option>
@@ -81,7 +106,7 @@ const FormModal = () => {
         </form>
         <div className={styles.btnContainer}>
           <button className={styles.cancelBtn} onClick={() => navigate(-1)}>Cancel</button>
-          <button className={styles.saveBtn} onClick={() => createMove({concept, amount, date, type})}>Save</button>
+          <button className={styles.saveBtn} onClick={() => createMove({concept, amount, date, category, type})}>Save</button>
         </div>
       </div>
     </div>

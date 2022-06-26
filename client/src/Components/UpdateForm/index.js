@@ -10,8 +10,20 @@ const FormModal = () => {
   const [concept, setConcept] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
+  const [category, setCategory] = useState("");
   const [type, setType] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://vast-fjord-34429.herokuapp.com/api/categories`)
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      setCategories(data);
+    })
+  }, []);
 
   useEffect(() => {
     fetch(`https://vast-fjord-34429.herokuapp.com/api/operations/${params.id}`)
@@ -22,6 +34,7 @@ const FormModal = () => {
       setConcept(data[0].concept);
       setAmount(data[0].amount);
       setDate(formatISO(new Date(data[0].date), { representation: 'date' }));
+      setCategory(data[0].category)
       setType(data[0].type);
     })
   }, [params.id]);
@@ -85,6 +98,18 @@ const FormModal = () => {
             {errorMessages.date && <span>You must pick a date</span>}
           </div>
           <div>
+            <label htmlFor="category">Category </label>
+            <select name="category" id="category" defaultValue={category} onChange={(e) => setCategory(e.target.value)} >
+              <option disabled>Select One</option>
+              {categories.map(cat => {
+                return(
+                  <option value={cat.name}>{cat.name}</option>
+                )
+              })}
+            </select>
+            {errorMessages.type && <span>You must select a type</span>}
+          </div>
+          <div>
             <label htmlFor="type">Type </label>
             <select name="type" id="type" value={type} disabled={true} onChange={(e) => setType(e.target.value)} >
               <option value="Income">Income</option>
@@ -95,7 +120,7 @@ const FormModal = () => {
         </form>
         <div className={styles.btnContainer}>
           <button className={styles.cancelBtn} onClick={() => navigate(-1)}>Cancel</button>
-          <button className={styles.saveBtn} onClick={() => editMove({concept, amount, date, type})}>Save</button>
+          <button className={styles.saveBtn} onClick={() => editMove({concept, amount, date, category, type})}>Save</button>
         </div>
       </div>
     </div>
