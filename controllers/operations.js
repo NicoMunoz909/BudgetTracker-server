@@ -25,9 +25,10 @@ const createOperation = (req,res) => {
     concept: req.body.concept,
     amount: req.body.amount,
     date: req.body.date,
+    category: req.body.category,
     type: req.body.type
   };
-  const sql = `INSERT INTO operations (concept, amount, date, type) VALUES('${expense.concept}', '${expense.amount}', '${expense.date}', '${expense.type}')`;
+  const sql = `INSERT INTO operations (concept, amount, date, type, category) VALUES('${expense.concept}', '${expense.amount}', '${expense.date}', '${expense.type}', '${expense.category}')`;
   db.query(sql, (err, result) => {
     if(err) {
       return res.status(400).send(err.sqlMessage);
