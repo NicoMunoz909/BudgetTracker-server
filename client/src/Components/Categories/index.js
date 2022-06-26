@@ -2,9 +2,12 @@ import styles from './categories.module.css';
 import { useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import DeleteModal from '../DeleteModal';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const Categories = () => {
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const [categories, setCategories] = useState([]);
   const [showDelete, setShowDelete] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -17,7 +20,7 @@ const Categories = () => {
     .then((data) => {
       setCategories(data);
     })
-  }, []);
+  }, [location]);
 
   const handleDelete = (e, category) => {
     e.stopPropagation();
@@ -39,10 +42,11 @@ const Categories = () => {
 
   return (
     <div className={styles.container}>
+      <Outlet />
       {showDelete && <DeleteModal onCancel={() => setShowDelete(false)} onConfirm={() => deleteCategory(selectedCategory)} />}
       <h2>Categories</h2>
       <div className={styles.controlsContainer}>
-        <button className={styles.addBtn} /*onClick={() => navigate(`${location.pathname}/new`)}*/>
+        <button className={styles.addBtn} onClick={() => navigate(`${location.pathname}/new`)}>
           Add Category
         </button>
       </div>
