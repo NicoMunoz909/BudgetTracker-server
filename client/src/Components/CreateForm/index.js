@@ -29,10 +29,12 @@ const FormModal = () => {
     const concept = document.getElementById('concept').value;
     const amount = parseFloat(document.getElementById('amount').value);
     const date = document.getElementById('date').value;
+    const category = document.getElementById('category').value;
     const type = document.getElementById('type').value;
     if (concept === "") errorMessages.concept = true
     if (isNaN(amount)) errorMessages.amount = true
     if (date === "") errorMessages.date = true
+    if (category === "Select One") errorMessages.category = true
     if (type === "Select One") errorMessages.type = true
     setErrorMessages(errorMessages);
     if (Object.keys(errorMessages).length === 0) {
@@ -92,7 +94,7 @@ const FormModal = () => {
                 )
               })}
             </select>
-            {errorMessages.type && <span>You must select a type</span>}
+            {errorMessages.category && <span>You must select a category</span>}
           </div>
           <div>
             <label htmlFor="type">Type </label>
