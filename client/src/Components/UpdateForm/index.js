@@ -16,7 +16,7 @@ const FormModal = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(`http://18.228.146.33/api/categories`)
+    fetch(`/api/categories`)
     .then((response) => {
       return response.json()
     })
@@ -26,7 +26,7 @@ const FormModal = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://18.228.146.33/api/operations/${params.id}`)
+    fetch(`/api/operations/${params.id}`)
     .then((response) => {
       return response.json()
     })
@@ -61,7 +61,7 @@ const FormModal = () => {
 
   const editMove = (move) => {
     if (!validateForm()) return;
-    fetch(`http://18.228.146.33/api/operations/${params.id}`,
+    fetch(`/api/operations/${params.id}`,
     {
       method: 'PATCH',
       headers: {

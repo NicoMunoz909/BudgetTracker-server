@@ -7,7 +7,7 @@ const CreateCategory = () => {
   const [name, setName] = useState('');
 
   const createCategory = (move) => {
-    fetch(`http://18.228.146.33/api/categories`,
+    fetch(`/api/categories`,
     {
       method: 'POST',
       headers: {

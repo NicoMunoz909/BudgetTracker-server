@@ -8,5 +8,5 @@ The goal of the challenge is to create a personal budget tracker app which allow
 
 ## Demo
 
-[Go to app](http://18.228.146.33/)
+[Go to app](/)
 

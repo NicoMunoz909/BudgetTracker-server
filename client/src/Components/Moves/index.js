@@ -14,7 +14,7 @@ const Moves = () => {
   const [filter, setFilter] = useState('All');
 
   useEffect(() => {
-    fetch('http://18.228.146.33/api/operations')
+    fetch('/api/operations')
     .then((response) => {
       return response.json()
     })
@@ -30,7 +30,7 @@ const Moves = () => {
   }
 
   const deleteMove = (move) => {
-    fetch(`http://18.228.146.33/api/operations/${move.id}`, {method: 'DELETE'})
+    fetch(`/api/operations/${move.id}`, {method: 'DELETE'})
     .then((response) => {
       if (response.status !== 200 && response.status !== 201) {
         return response.json()
