@@ -26,7 +26,7 @@ app.listen(port, () => {
 })
 
 db.getConnection((err, connection) => {
-  if (connection) console.log(connection)
+  if (connection) console.log('DB connected')
 
   connection.release();
 })
