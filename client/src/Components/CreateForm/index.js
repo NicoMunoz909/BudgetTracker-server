@@ -15,7 +15,7 @@ const FormModal = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(`https://vast-fjord-34429.herokuapp.com/api/categories`)
+    fetch(`http://18.228.146.33/api/categories`)
     .then((response) => {
       return response.json()
     })
@@ -46,7 +46,7 @@ const FormModal = () => {
 
   const createMove = (move) => {
     if (!validateForm()) return;
-    fetch(`https://vast-fjord-34429.herokuapp.com/api/operations`,
+    fetch(`http://18.228.146.33/api/operations`,
     {
       method: 'POST',
       headers: {

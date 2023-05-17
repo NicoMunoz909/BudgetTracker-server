@@ -13,7 +13,7 @@ const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
-    fetch('https://vast-fjord-34429.herokuapp.com/api/categories')
+    fetch('http://18.228.146.33/api/categories')
     .then((response) => {
       return response.json()
     })
@@ -29,7 +29,7 @@ const Categories = () => {
   }
 
   const deleteCategory = (category) => {
-    fetch(`https://vast-fjord-34429.herokuapp.com/api/categories/${category.id}`, {method: 'DELETE'})
+    fetch(`http://18.228.146.33/api/categories/${category.id}`, {method: 'DELETE'})
     .then((response) => {
       if (response.status !== 200 && response.status !== 201) {
         return response.json()

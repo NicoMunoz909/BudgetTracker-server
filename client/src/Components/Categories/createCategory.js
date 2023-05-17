@@ -7,7 +7,7 @@ const CreateCategory = () => {
   const [name, setName] = useState('');
 
   const createCategory = (move) => {
-    fetch(`https://vast-fjord-34429.herokuapp.com/api/categories`,
+    fetch(`http://18.228.146.33/api/categories`,
     {
       method: 'POST',
       headers: {
