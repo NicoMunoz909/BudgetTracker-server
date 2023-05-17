@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const router = require('./router');
 const path = require('path');
+const db = require('./config/database')
 
 const app = express();
 
@@ -22,4 +23,10 @@ const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
+})
+
+db.getConnection((err, connection) => {
+  if (connection) console.log(connection)
+
+  connection.release();
 })
