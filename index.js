@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const router = require('./router');
 const path = require('path');
 const db = require('./config/database')
@@ -7,7 +6,6 @@ const db = require('./config/database')
 const app = express();
 
 app.use(express.json());
-app.use(cors());
 
 //Use Routes
 app.use('/api', router);
