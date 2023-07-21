@@ -1,51 +1,28 @@
-const db = require('../config/database');
+const { Categories } = require("../db/models");
 
-const getAll = (req, res) => {
-  const sql = `SELECT * FROM categories`;
-  db.query(sql, (err, result) => {
-    if(err) {
-      return res.status(400).send(err.sqlMessage);
-    };
-    return res.send(result);
-  })
-}
+const getAll = async (req, res) => {
+  const categories = await Categories.findAll();
+  res.send(categories);
+};
 
-const getById = (req,res) => {
-  const sql = `SELECT * FROM categories WHERE id=${req.params.id}`;
-  db.query(sql, (err, result) => {
-    if(err) {
-      return res.status(400).send(err.sqlMessage);
-    };
-    return res.send(result);
-  })
-}
+const getById = async (req, res) => {
+  const category = await Categories.findByPk({ where: { id: req.params.id } });
+  res.send(category);
+};
 
-const createCategory = (req,res) => {
-  const category = {
-    name: req.body.name
-  };
-  const sql = `INSERT INTO categories (name) VALUES('${category.name}')`;
-  db.query(sql, (err, result) => {
-    if(err) {
-      return res.status(400).send(err.sqlMessage);
-    };
-    return res.send(`Insert succesful ${result}`);
-  })
-}
+const createCategory = async (req, res) => {
+  const newCat = await Categories.create({ ...req.body });
+  res.send(newCat);
+};
 
-const deleteCategory = (req,res) => {
-  const sql = `DELETE FROM categories WHERE id=${req.params.id}`;
-  db.query(sql, (err, result) => {
-    if(err) {
-      return res.status(400).send(err.sqlMessage);
-    };
-    return res.send('Deleted succesfully');
-  })
-}
+const deleteCategory = async (req, res) => {
+  const category = await Categories.destroy({ where: { id: req.params.id } });
+  res.send(category);
+};
 
 module.exports = {
   getAll,
   getById,
   createCategory,
-  deleteCategory
-}
+  deleteCategory,
+};
