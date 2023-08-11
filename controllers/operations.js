@@ -6,8 +6,12 @@ const getAll = async (req, res) => {
 };
 
 const getById = async (req, res) => {
-  const operation = await Operations.findByPk({ where: { id: req.params.id } });
-  res.send(operation);
+  try {
+    const operation = await Operations.findByPk(req.params.id);
+    res.send(operation);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 const createOperation = async (req, res) => {
@@ -16,16 +20,13 @@ const createOperation = async (req, res) => {
 };
 
 const updateOperation = async (req, res) => {
-  const operation = await Operations.update(
-    { ...req.body },
-    { where: { id: req.params.id } }
-  );
+  const operation = await Operations.update({ ...req.body }, { where: { id: req.params.id } });
   res.send(operation);
 };
 
 const deleteOperation = async (req, res) => {
   const operation = await Operations.destroy({ where: { id: req.params.id } });
-  res.send(operation);
+  res.status(200).send("Deleted Succesfully");
 };
 
 module.exports = {

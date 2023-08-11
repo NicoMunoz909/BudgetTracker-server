@@ -17,7 +17,7 @@ const createCategory = async (req, res) => {
 
 const deleteCategory = async (req, res) => {
   const category = await Categories.destroy({ where: { id: req.params.id } });
-  res.send(category);
+  res.send("Deleted Succesfully");
 };
 
 module.exports = {
